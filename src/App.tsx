@@ -101,7 +101,7 @@ export const ItemList: React.FC<{
   const filteredItems = items.filter(
     (item) =>
       item.name.toLowerCase().includes(filter.toLowerCase()) ||
-      item.category.toLowerCase().includes(filter.toLowerCase()),
+      item.category.toLowerCase().includes(filter.toLowerCase())
   );
 
   const totalPrice = filteredItems.reduce((sum, item) => sum + item.price, 0);
@@ -305,7 +305,7 @@ const App: React.FC = () => {
 
   const removeNotification = (id: number) => {
     setNotifications((prev) =>
-      prev.filter((notification) => notification.id !== id),
+      prev.filter((notification) => notification.id !== id)
     );
   };
 
