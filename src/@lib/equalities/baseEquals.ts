@@ -21,7 +21,7 @@ export function baseEquals<T>(
 
   // 객체나 배열이 아닌 기본 타입인 경우 직접 비교하여 반환
   if (typeof objA !== "object") {
-    return objA === objB;
+    return Object.is(objA, objB);
   }
 
   // 배열 비교 - compareFn 에 따라 얕은 비교 또는 깊은 비교 수행
