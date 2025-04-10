@@ -1,17 +1,15 @@
-import React from "react";
-import { renderLog } from "../../utils";
-import { useTheme } from "../../contexts/ThemeContext";
-import { useUser } from "../../contexts/UserContext";
-import { useCallback } from "../../@lib/hooks";
-import { memo } from "../../@lib/hocs";
+import { renderLog } from "../utils";
+import { useTheme } from "../contexts/ThemeContext";
+import { useUser } from "../contexts/UserContext";
+import { useCallback } from "../@lib/hooks";
 
-export const Header: React.FC = memo(() => {
+export const Header: React.FC = () => {
   renderLog("Header rendered");
+
   const { theme, toggleTheme } = useTheme();
   const { user, login, logout } = useUser();
 
   const handleLogin = useCallback(() => {
-    // 실제 애플리케이션에서는 사용자 입력을 받아야 합니다.
     login("user@example.com");
   }, [login]);
 
@@ -48,4 +46,4 @@ export const Header: React.FC = memo(() => {
       </div>
     </header>
   );
-});
+};

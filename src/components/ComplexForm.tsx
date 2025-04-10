@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { renderLog } from "../../utils";
-import { useNotification } from "../../contexts/NotificationContext";
-import { useCallback, useMemo } from "../../@lib/hooks";
-import { memo } from "../../@lib/hocs";
+import { renderLog } from "../utils";
+import { useNotification } from "../contexts/NotificationContext";
+import { useCallback, useMemo } from "../@lib/hooks";
+import { memo } from "../@lib/hocs";
 
 export const ComplexForm: React.FC = memo(() => {
   renderLog("ComplexForm rendered");
   const { addNotification } = useNotification();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(() => ({
     name: "",
     email: "",
     age: 0,
     preferences: [] as string[],
-  });
+  }));
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {

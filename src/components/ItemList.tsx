@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { renderLog } from "../../utils";
-import { useTheme } from "../../contexts/ThemeContext";
-import { useMemo } from "../../@lib/hooks";
-import { memo } from "../../@lib/hocs";
+import { renderLog } from "../utils";
+import { useTheme } from "../contexts/ThemeContext";
+import { useMemo } from "../@lib/hooks";
+import { memo } from "../@lib/hocs";
 
 interface Item {
   id: number;

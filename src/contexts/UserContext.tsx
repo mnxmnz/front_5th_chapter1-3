@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { useMemo, useCallback } from "../@lib/hooks";
+import { useNotification } from "./NotificationContext";
 
 interface User {
   id: number;
@@ -18,19 +19,25 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const { addNotification } = useNotification();
+  const [user, setUser] = useState<User | null>(() => null);
 
-  const login = useCallback((email: string) => {
-    setUser({
-      id: 1,
-      name: "사용자",
-      email,
-    });
-  }, []);
+  const login = useCallback(
+    (email: string) => {
+      setUser({
+        id: 1,
+        name: "홍길동",
+        email,
+      });
+      addNotification("성공적으로 로그인되었습니다", "success");
+    },
+    [addNotification]
+  );
 
   const logout = useCallback(() => {
     setUser(null);
-  }, []);
+    addNotification("성공적으로 로그아웃되었습니다", "success");
+  }, [addNotification]);
 
   const value = useMemo(
     () => ({
