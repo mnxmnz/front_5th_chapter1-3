@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { renderLog } from "../utils";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../contexts/theme/useTheme";
 import { useMemo } from "../@lib/hooks";
 import { memo } from "../@lib/hocs";
 
@@ -18,6 +18,7 @@ interface ItemListProps {
 
 export const ItemList = memo(({ items, onAddItemsClick }: ItemListProps) => {
   renderLog("ItemList rendered");
+
   const [filter, setFilter] = useState("");
   const { theme } = useTheme();
 

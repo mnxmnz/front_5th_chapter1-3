@@ -1,6 +1,6 @@
-import { NotificationProvider } from "./contexts/NotificationContext";
-import { UserProvider } from "./contexts/UserContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import { NotificationProvider } from "./contexts/notification/NotificationProvider";
+import { UserProvider } from "./contexts/user/UserProvider";
+import { ThemeProvider } from "./contexts/theme/ThemeProvider";
 import { Home } from "./components/Home";
 
 const App: React.FC = () => {

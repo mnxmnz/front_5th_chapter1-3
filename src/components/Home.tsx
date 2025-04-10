@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { generateItems } from "../utils";
 
 import { Header } from "./Header";
@@ -6,8 +6,8 @@ import { ItemList } from "./ItemList";
 import { ComplexForm } from "./ComplexForm";
 import { NotificationSystem } from "./NotificationSystem";
 
-import { useCallback } from "../@lib/hooks/useCallback";
-import { useTheme } from "../contexts/ThemeContext";
+import { useCallback } from "../@lib/hooks";
+import { useTheme } from "../contexts/theme/useTheme";
 
 export const Home: React.FC = () => {
   const [items, setItems] = useState(() => generateItems(1000));

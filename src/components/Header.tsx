@@ -1,9 +1,10 @@
 import { renderLog } from "../utils";
-import { useTheme } from "../contexts/ThemeContext";
-import { useUser } from "../contexts/UserContext";
+import { useTheme } from "../contexts/theme/useTheme";
+import { useUser } from "../contexts/user/useUser";
 import { useCallback } from "../@lib/hooks";
+import { memo } from "../@lib/hocs";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(() => {
   renderLog("Header rendered");
 
   const { theme, toggleTheme } = useTheme();
@@ -46,4 +47,4 @@ export const Header: React.FC = () => {
       </div>
     </header>
   );
-};
+});

@@ -4,20 +4,20 @@ import { shallowEquals } from "../equalities";
 
 export function useMemo<T>(
   factory: () => T,
-  deps: DependencyList,
-  equals = shallowEquals
+  _deps: DependencyList,
+  _equals = shallowEquals
 ): T {
   // 이전 상태 저장
   const memoizedValue = useRef<T | null>(null);
-  const prevDeps = useRef(deps);
+  const prevDeps = useRef(_deps);
 
   // 의존성 비교
-  const isDepsSame = equals(prevDeps.current, deps);
+  const isDepsSame = _equals(prevDeps.current, _deps);
 
   // 상태 업데이트
   if (memoizedValue.current === null || !isDepsSame) {
     memoizedValue.current = factory();
-    prevDeps.current = deps;
+    prevDeps.current = _deps;
   }
 
   return memoizedValue.current;
