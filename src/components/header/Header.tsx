@@ -3,8 +3,9 @@ import { useCallback } from "../../@lib/hooks";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useUser } from "../../contexts/UserContext";
 import { renderLog } from "../../utils";
+import { memo } from "../../@lib/hocs";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(() => {
   renderLog("Header rendered");
   const { theme, toggleTheme } = useTheme();
   const { user, login, logout } = useUser();
@@ -47,4 +48,4 @@ export const Header: React.FC = () => {
       </div>
     </header>
   );
-};
+});

@@ -3,6 +3,7 @@ import { useMemo } from "../../@lib/hooks";
 import { useTheme } from "../../contexts/ThemeContext";
 import { renderLog } from "../../utils";
 import { generateItems } from "../../utils";
+import { memo } from "../../@lib/hocs";
 
 interface Item {
   id: number;
@@ -11,7 +12,7 @@ interface Item {
   price: number;
 }
 
-export const ItemList: React.FC = () => {
+export const ItemList: React.FC = memo(() => {
   renderLog("ItemList rendered");
   const [items, setItems] = useState<Item[]>([]);
   const [filter, setFilter] = useState("");
@@ -76,4 +77,4 @@ export const ItemList: React.FC = () => {
       </ul>
     </div>
   );
-};
+});
