@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { useMemo, useCallback } from "../@lib/hooks";
 
 interface User {
   id: number;
@@ -19,23 +20,28 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = (email: string) => {
+  const login = useCallback((email: string) => {
     setUser({
       id: 1,
       name: "사용자",
       email,
     });
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUser(null);
-  };
+  }, []);
 
-  return (
-    <UserContext.Provider value={{ user, login, logout }}>
-      {children}
-    </UserContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      login,
+      logout,
+    }),
+    [user, login, logout]
   );
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export const useUser = () => {
