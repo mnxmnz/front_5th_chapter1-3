@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from "react";
-import { useMemo } from "../../@lib/hooks";
-import { useTheme } from "../../contexts/ThemeContext";
+import { useState } from "react";
 import { renderLog } from "../../utils";
-import { generateItems } from "../../utils";
+import { useTheme } from "../../contexts/ThemeContext";
+import { useMemo } from "../../@lib/hooks";
 import { memo } from "../../@lib/hocs";
 
 interface Item {
@@ -12,16 +11,15 @@ interface Item {
   price: number;
 }
 
-export const ItemList: React.FC = memo(() => {
+interface ItemListProps {
+  items: Item[];
+  onAddItemsClick: () => void;
+}
+
+export const ItemList = memo(({ items, onAddItemsClick }: ItemListProps) => {
   renderLog("ItemList rendered");
-  const [items, setItems] = useState<Item[]>([]);
   const [filter, setFilter] = useState("");
   const { theme } = useTheme();
-
-  const addItems = useCallback(() => {
-    const newItems = generateItems(1000);
-    setItems((prev) => [...prev, ...newItems]);
-  }, []);
 
   const filteredItems = useMemo(
     () =>
@@ -47,7 +45,7 @@ export const ItemList: React.FC = memo(() => {
           <button
             type="button"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs"
-            onClick={addItems}
+            onClick={onAddItemsClick}
           >
             대량추가
           </button>

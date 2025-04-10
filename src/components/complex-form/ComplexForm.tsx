@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useCallback, useMemo, useDeepMemo } from "../../@lib/hooks";
-import { useNotification } from "../../contexts/NotificationContext";
 import { renderLog } from "../../utils";
+import { useNotification } from "../../contexts/NotificationContext";
+import { useCallback, useMemo } from "../../@lib/hooks";
 import { memo } from "../../@lib/hocs";
 
 export const ComplexForm: React.FC = memo(() => {
@@ -13,8 +13,6 @@ export const ComplexForm: React.FC = memo(() => {
     age: 0,
     preferences: [] as string[],
   });
-
-  const memoizedFormData = useDeepMemo(() => formData, [formData]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -53,7 +51,7 @@ export const ComplexForm: React.FC = memo(() => {
         <input
           type="text"
           name="name"
-          value={memoizedFormData.name}
+          value={formData.name}
           onChange={handleInputChange}
           placeholder="이름"
           className="w-full p-2 border border-gray-300 rounded text-black"
@@ -61,7 +59,7 @@ export const ComplexForm: React.FC = memo(() => {
         <input
           type="email"
           name="email"
-          value={memoizedFormData.email}
+          value={formData.email}
           onChange={handleInputChange}
           placeholder="이메일"
           className="w-full p-2 border border-gray-300 rounded text-black"
@@ -69,7 +67,7 @@ export const ComplexForm: React.FC = memo(() => {
         <input
           type="number"
           name="age"
-          value={memoizedFormData.age}
+          value={formData.age}
           onChange={handleInputChange}
           placeholder="나이"
           className="w-full p-2 border border-gray-300 rounded text-black"
@@ -79,7 +77,7 @@ export const ComplexForm: React.FC = memo(() => {
             <label key={pref} className="inline-flex items-center">
               <input
                 type="checkbox"
-                checked={memoizedFormData.preferences.includes(pref)}
+                checked={formData.preferences.includes(pref)}
                 onChange={() => handlePreferenceChange(pref)}
                 className="form-checkbox h-5 w-5 text-blue-600"
               />
